@@ -1,10 +1,8 @@
-from sortedcontainers import SortedList
-
 def max_social_distance(seatNum, seatOrLeave):
-    # 初始化一个有序列表来存储已占用的座位
-    occupied = SortedList()
+    # 初始化一个集合来存储已占用的座位
+    occupied = set()
     last_seat = -1  # 用于记录最后一个进来的员工所坐的座位
-    
+
     for action in seatOrLeave:
         if action == 1:
             # 员工进场的情况
@@ -16,19 +14,20 @@ def max_social_distance(seatNum, seatOrLeave):
                 # 查找最佳座位
                 max_distance = -1
                 best_seat = -1
+                occupied_list = sorted(occupied)
                 
                 # 检查第一个座位
-                if occupied[0] != 0:
+                if occupied_list[0] != 0:
                     # 如果第一个座位未被占用，计算其社交距离
-                    distance = occupied[0]
+                    distance = occupied_list[0]
                     if distance > max_distance:
                         max_distance = distance
                         best_seat = 0
                 
                 # 检查已占用座位之间的空座位
-                for i in range(1, len(occupied)):
-                    prev_seat = occupied[i - 1]
-                    next_seat = occupied[i]
+                for i in range(1, len(occupied_list)):
+                    prev_seat = occupied_list[i - 1]
+                    next_seat = occupied_list[i]
                     # 计算当前空位的社交距离
                     distance = (next_seat - prev_seat) // 2
                     candidate = prev_seat + distance
@@ -38,11 +37,11 @@ def max_social_distance(seatNum, seatOrLeave):
                         best_seat = candidate
                 
                 # 检查最后一个座位
-                if occupied[-1] != seatNum - 1:
+                if occupied_list[-1] != seatNum - 1:
                     # 如果最后一个座位未被占用，计算其社交距离
-                    distance = seatNum - 1 - occupied[-1]
+                    distance = seatNum - 1 - occupied_list[-1]
                     if distance > max_distance:
-                        best_seat = occupied[-1] + distance
+                        best_seat = occupied_list[-1] + distance
                 
                 # 更新已占用的座位和最后一个员工的位置
                 occupied.add(best_seat)
