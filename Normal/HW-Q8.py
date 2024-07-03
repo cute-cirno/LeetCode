@@ -23,17 +23,17 @@ def count_ways(n, m):
                 return
         way_set.add(tuple(distribution))
         
-    def count_permutations(t):
-        counter = Counter(t)
-        numerator = factorial(len(t))
-        denominator = 1
-        for count in counter.values():
-            denominator *= factorial(count)
-        return numerator // denominator
+    # def count_permutations(t):
+    #     counter = Counter(t)
+    #     numerator = factorial(len(t))
+    #     denominator = 1
+    #     for count in counter.values():
+    #         denominator *= factorial(count)
+    #     return numerator // denominator
         
     distribute(n, m, [],1)
-    # return way_set
-    return sum([count_permutations(_) for _ in way_set])
+    return len(way_set)
+    # return sum([count_permutations(_) for _ in way_set])
 
 # 示例用法
 n = 8  # 月饼数量
