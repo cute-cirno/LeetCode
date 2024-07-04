@@ -1,4 +1,3 @@
-import sys
 from collections import defaultdict
 
 def get_result(matrix, n, m, k, nums):

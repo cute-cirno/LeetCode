@@ -1,4 +1,3 @@
-import sys
 import collections
 
 def spfa(matrix, dist, m, n):

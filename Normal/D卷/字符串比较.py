@@ -22,6 +22,7 @@ def get_result(a, b, v):
 
     return max_length
 
+
 if __name__ == "__main__":
     data = input().strip().split()
     a = data[0]

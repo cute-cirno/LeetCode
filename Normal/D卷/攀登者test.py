@@ -1,6 +1,6 @@
-def climb(heights, strength, idxs, direction):
+def climb(heights, strenght, idxs, direction):
     start = 0
-    while start < len(heights) and heights[start] != 0:
+    while heights[start] != 0 and start < len(heights):
         start += 1
 
     cost = 0
@@ -12,26 +12,26 @@ def climb(heights, strength, idxs, direction):
         diff = heights[i] - heights[i - 1]
 
         if diff > 0:
-            cost += 3 * diff
+            cost += diff * 3
 
             if i + 1 >= len(heights) or heights[i] > heights[i + 1]:
-                if cost < strength:
+                if cost < strenght:
                     if direction:
                         idxs.add(i)
                     else:
-                        idxs.add(len(heights) - 1 - i)
+                        idxs.add(len(heights)-1-i)
+        
         elif diff < 0:
             cost -= diff * 3
 
-
-def get_result():
+def get_result(heights, strenght):
     idxs = set()
-    climb(heights, strength, idxs, True)
-    climb(heights[::-1], strength, idxs, False)
+    climb(heigths, strenght, idxs, True)
+    climb(heights[::-1], strenght, idxs, False)
     return len(idxs)
 
 
 if __name__ == "__main__":
-    heights = list(map(int, input().strip().split()))
+    heigths = list(map(int, input().strip().split()))
     strength = int(input())
-    print(get_result(heights, strength))
+    print(get_result(heigths, strength))
