@@ -8,7 +8,6 @@ def get_min_time(tasks, n):
 
     time = 0
     cooldown = []
-    
 
     while max_heap or cooldown:
         time += 1
