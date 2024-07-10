@@ -1,36 +1,36 @@
-import heapq
+def get_result(n, s):
+    chars = list(s)
+    limit = chr(ord('a') + n - 1)
+    back = False
+
+    for i in range(len(chars) - 1, -1, -1):
+        if chars[i] < limit:
+            if not back:
+                chars[i] = chr(ord(chars[i]) + 1)
+            else:
+                back = False
+
+            if i - 1 >= 0 and chars[i] == chars[i - 1]:
+                continue
+            if i - 2 >= 0 and chars[i] == chars[i - 2]:
+                continue
+
+            return ''.join(chars)
+        else:
+            chars[i] = 'a'
+            back = True
+
+    return "NO"
 
 def main():
+    import sys
+    input = sys.stdin.read
     data = input().split()
-    
-    t = int(data[0])
-    n = int(data[1])
-    
-    road_cost = list(map(int, data[2:2 + n + 1]))
-    mds = [list(map(int, data[2 + n + 1 + 2*i:2 + n + 1 + 2*i + 2])) for i in range(n)]
-    
-    total_road_cost = sum(road_cost)
-    remain_days = t - total_road_cost
-    
-    if remain_days <= 0:
-        print(0)
-        return
-    
-    max_profit = []
-    heapq.heapify(max_profit)
-    
-    for m, d in mds:
-        day_profit = m
-        while day_profit > 0:
-            if len(max_profit) >= remain_days:
-                if day_profit > max_profit[0]:
-                    heapq.heappop(max_profit)
-                else:
-                    break
-            heapq.heappush(max_profit, day_profit)
-            day_profit -= d
-    
-    print(sum(max_profit))
+
+    n = int(data[0])
+    s = data[1]
+
+    print(get_result(n, s))
 
 if __name__ == "__main__":
     main()

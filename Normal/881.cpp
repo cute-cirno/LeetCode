@@ -30,6 +30,6 @@ public:
 int main() {
     Solution sol;
     std::vector<int> arr = {3,5,3,4};
-    cout<<sol.numRescueBoats(arr,5);
+    cout<<sol.numRescueBoats(arr,5)<<endl;
     return 0;
 }

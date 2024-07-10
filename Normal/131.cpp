@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
@@ -23,9 +22,9 @@ private:
 
         for (int end = start; end < s.length(); ++end) {
             if (isPalindrome(s, start, end)) {
-                 current.push_back(s.substr(start, end - start + 1));
+                current.push_back(s.substr(start, end - start + 1));
                 backtrack(s, end + 1, current, result);
-                           current.pop_back();
+                current.pop_back();
             }
         }
     }
@@ -42,7 +41,6 @@ private:
     }
 };
 
-
 int main() {
     Solution sol;
     string s = "abacccdbe";
@@ -50,9 +48,9 @@ int main() {
     
     for (const auto& vec : result) {
         cout << "[";
-        for (const auto& str : vec) {
-            cout << "\"" << str << "\"";
-            if (&str != &vec.back()) {
+        for (size_t i = 0; i < vec.size(); ++i) {
+            cout << "\"" << vec[i] << "\"";
+            if (i != vec.size() - 1) {
                 cout << ", ";
             }
         }
