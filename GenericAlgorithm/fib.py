@@ -33,23 +33,3 @@ def fibonacci_dp(n):
 # # 测试几个不同的n值
 # for n in range(0,4767):  # 从0到49
 #     check_fibonacci_accuracy(n)
-
-import time
-from memory_profiler import memory_usage
-
-def profile_function(func, n):
-    start_time = time.time()
-    mem_usage = memory_usage((func, (n,)), interval=0.1)
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    max_memory = max(mem_usage) - min(mem_usage)
-    return elapsed_time, max_memory
-
-if __name__ == '__main__':
-    n = 1000
-    time_dp, mem_dp = profile_function(fibonacci_dp, n)
-    time_decimal, mem_decimal = profile_function(fibonacci_decimal, n)
-
-    print(f"Dynamic Programming: Time = {time_dp} seconds, Memory = {mem_dp} MiB")
-    print(f"Decimal Formula: Time = {time_decimal} seconds, Memory = {mem_decimal} MiB")
-

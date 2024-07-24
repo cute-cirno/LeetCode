@@ -25,7 +25,6 @@ def calculate_minimum_broadcast_count(matrix):
     return union_find.count
 
 
-# 读取输入，这里默认输入是一行，逗号分隔的多个字符串，每个字符串是由空格分隔的字符
 data = input().strip()
 matrix = [[c for c in line.strip()]for line in data.split(",")]
 
